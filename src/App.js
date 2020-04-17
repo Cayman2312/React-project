@@ -19,11 +19,20 @@ class App extends Component {
     });
   };
 
-  changeTitleHandler = (pageTitle) => {
-    this.setState({
-      pageTitle,
-    });
-  };
+  onChangeName(name, index) {
+    const car = this.state.cars[index];
+    car.name = name;
+    const cars = [...this.state.cars];
+    cars[index] = car;
+    this.setState({ cars });
+  }
+
+  deleteHandler(index) {
+    const cars = this.state.cars.concat();
+    cars.splice(index, 1);
+
+    this.setState({ cars });
+  }
 
   render() {
     const divStyle = {
@@ -39,7 +48,10 @@ class App extends Component {
             key={index}
             name={car.name}
             year={car.year}
-            onChangeTitle={this.changeTitleHandler.bind(this, car.name)}
+            onDelete={this.deleteHandler.bind(this, index)}
+            onChangeName={(event) =>
+              this.onChangeName(event.target.value, index)
+            }
           />
         );
       });
