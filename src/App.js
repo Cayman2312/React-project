@@ -3,15 +3,19 @@ import './App.scss';
 import Car from './Car/Car';
 
 class App extends Component {
-  state = {
-    cars: [
-      { name: 'Ford', year: 2018 },
-      { name: 'Audi', year: 2016 },
-      { name: 'Mazda', year: 2010 },
-    ],
-    pageTitle: 'React components',
-    showCars: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cars: [
+        { name: 'Ford', year: 2018 },
+        { name: 'Audi', year: 2016 },
+        { name: 'Mazda', year: 2010 },
+      ],
+      pageTitle: 'React components',
+      showCars: false,
+    };
+  }
 
   toggleCarsHandler = () => {
     this.setState({
@@ -59,9 +63,12 @@ class App extends Component {
 
     return (
       <div style={divStyle}>
-        <h1>{this.state.pageTitle}</h1>
+        {/* <h1>{this.state.pageTitle}</h1> */}
+        <h1>{this.props.title}</h1>
 
-        <button onClick={this.toggleCarsHandler}>Toggle cars</button>
+        <button onClick={this.toggleCarsHandler} className={'AppButton'}>
+          Toggle cars
+        </button>
 
         <div
           style={{
