@@ -3,21 +3,22 @@ import React from 'react';
 import './Car.scss';
 
 class Car extends React.Component {
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate', nextProps, nextState);
     return nextProps.name.trim() !== this.props.name.trim();
   }
 
-  UNSAFE_componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate', nextProps, nextState);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log('getDerivedStateFromProps', nextProps, prevState);
+    return prevState;
   }
 
   componentDidUpdate() {
     console.log('componentDidUpdate');
+  }
+
+  getSnapshotBeforeUpdate() {
+    console.log('getSnapshotBeforeUpdate');
   }
 
   componentWillUnmount() {
