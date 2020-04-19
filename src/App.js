@@ -4,6 +4,8 @@ import Car from './Car/Car';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Counter from './Counter/Counter';
 
+export const ContextShowP = React.createContext(false);
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,7 @@ class App extends Component {
       ],
       pageTitle: 'React components',
       showCars: false,
+      showPar: false,
     };
   }
 
@@ -80,7 +83,9 @@ class App extends Component {
 
         <h1>{this.props.title}</h1>
 
-        <Counter />
+        <ContextShowP.Provider value={this.state.showPar}>
+          <Counter />
+        </ContextShowP.Provider>
 
         <hr />
 
@@ -90,6 +95,16 @@ class App extends Component {
           className={'AppButton'}
         >
           Toggle cars
+        </button>
+
+        <hr />
+
+        <button
+          onClick={() => {
+            this.setState({ showPar: true });
+          }}
+        >
+          ShowPar
         </button>
 
         <div
