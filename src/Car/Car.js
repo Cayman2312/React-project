@@ -1,5 +1,6 @@
 import React from 'react';
 // import Radium from 'radium';
+import PropTypes from 'prop-types';
 import './Car.scss';
 import withClass from '../hoc/withClass';
 
@@ -33,5 +34,12 @@ class Car extends React.Component {
     );
   }
 }
+
+Car.propTypes = {
+  name: PropTypes.string,
+  year: PropTypes.number.isRequired,
+  onChangeName: PropTypes.func,
+  onDelete: PropTypes.func,
+};
 
 export default withClass(Car, 'Car');
